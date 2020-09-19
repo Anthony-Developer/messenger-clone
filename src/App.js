@@ -12,7 +12,7 @@ function App() {
     setUsername(prompt('Please enter your Username'))
   }, [])
 
-  // When you hit send messages it appends your text to the array of messages
+  // When you hit send message it appends your text to the array of messages
   const sendMessage = (e) => {
     e.preventDefault()
     setMessages([...messages, {username: username, text: input}])
@@ -31,16 +31,13 @@ function App() {
       ))}
 
       <form>
-
-      <FormControl>
-        <InputLabel >Enter Message </InputLabel>
-        <Input value={input} onChange={e => setInput(e.target.value)}/>
-        <Button disabled={!input} variant="contained" color="primary" type='submit' onClick={sendMessage}> Send </Button>
-      </FormControl>
-
+        <FormControl>
+          <InputLabel >Enter Message </InputLabel>
+          <Input value={input} onChange={e => setInput(e.target.value)}/>
+          <Button disabled={!input} variant="contained" color="primary" type='submit' onClick={sendMessage}> Send </Button>
+        </FormControl>
       </form>
       
-
     </div>
 
   )
