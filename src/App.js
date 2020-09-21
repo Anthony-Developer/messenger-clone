@@ -2,20 +2,32 @@ import React, { useState,useEffect } from 'react'
 import {Button, FormControl, InputLabel, Input} from '@material-ui/core'
 import './App.css'
 import Messages from './Components/Messages'
+import db from './Firebase'
+import firebase from 'firebase'
 
 function App() {
   const [input, setInput] = useState('')
-  const [messages, setMessages] = useState([{username: 'Steve', text: 'Hello World'}, {username: 'Mike', text: 'What World?'}, {username: 'John', text: 'This one Dummy!'}])
+  const [messages, setMessages] = useState([])
   const [username, setUsername] = useState('')
+
 
   useEffect(() => {
     setUsername(prompt('Please enter your Username'))
+    //Getting data from Firebase Database
+    db.collection('messages').orderBy('timestamp', 'asc').onSnapshot(snapshot => {
+      setMessages(snapshot.docs.map(doc => doc.data()))
+    })
   }, [])
 
   // When you hit send message it appends your text to the array of messages
   const sendMessage = (e) => {
     e.preventDefault()
-    setMessages([...messages, {username: username, text: input}])
+
+    db.collection('messages').add({
+      message: input,
+      username: username,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    })
     setInput('')
   }
 
@@ -26,9 +38,11 @@ function App() {
       <h1>Facebook Messenger</h1>
       <h3>Welcome {username}</h3>
 
-      {messages.map(message => (
-        <Messages username={message.username} text={message.text}/>
-      ))}
+      <div className="messages_container">
+        {messages.map(message => (
+          <Messages username={username} message={message}/>
+        ))}
+      </div>
 
       <form>
         <FormControl>
