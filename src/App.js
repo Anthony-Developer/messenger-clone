@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, {useState, useEffect} from 'react'
 import {Button, FormControl, InputLabel, Input} from '@material-ui/core'
 import './App.css'
 import Messages from './Components/Messages'
@@ -19,10 +19,9 @@ function App() {
     })
   }, [])
 
-  // When you hit send message it appends your text to the array of messages
+  // Sends your message to the DB
   const sendMessage = (e) => {
     e.preventDefault()
-
     db.collection('messages').add({
       message: input,
       username: username,
@@ -46,7 +45,7 @@ function App() {
 
       <form>
         <FormControl>
-          <InputLabel >Enter Message </InputLabel>
+          <InputLabel> Enter Message </InputLabel>
           <Input value={input} onChange={e => setInput(e.target.value)}/>
           <Button disabled={!input} variant="contained" color="primary" type='submit' onClick={sendMessage}> Send </Button>
         </FormControl>
