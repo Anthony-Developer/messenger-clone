@@ -1,15 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import { FormControl, InputLabel, Input} from '@material-ui/core'
-import { IconButton } from '@material-ui/core'
-import SendIcon from '@material-ui/icons/Send'
 import FlipMove from 'react-flip-move'
 import './App.css'
 import Messages from './Components/Messages'
+import InputField from './Components/InputField'
 import db from './Firebase'
-import firebase from 'firebase'
 
 function App() {
-  const [input, setInput] = useState('')
   const [messages, setMessages] = useState([])
   const [username, setUsername] = useState('')
 
@@ -23,16 +19,7 @@ function App() {
     })
   }, [])
 
-  // Sends your message to the DB
-  const sendMessage = (e) => {
-    e.preventDefault()
-    db.collection('messages').add({
-      message: input,
-      username: username,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    })
-    setInput('')
-  }
+ 
 
   return (
 
@@ -50,19 +37,7 @@ function App() {
         </FlipMove>
       </div>
 
-      <div className="form_container">
-        <form className="app_form">
-          <FormControl className="app_formControl">
-            <InputLabel> Enter Message </InputLabel>
-            <Input className="app_input" value={input} onChange={e => setInput(e.target.value)}/>
-
-            <IconButton className="app_iconButton" disabled={!input} variant="contained" color="primary" type='submit' onClick={sendMessage}>
-              <SendIcon />
-            </IconButton>
-
-          </FormControl>
-        </form>
-      </div>    
+      <InputField username={username}/>
       
     </div>
 
