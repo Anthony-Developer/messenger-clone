@@ -10,7 +10,6 @@ function App() {
   const [messages, setMessages] = useState([])
   const [username, setUsername] = useState('')
 
-
   useEffect(() => {
     setUsername(prompt('Please enter your Username'))
     //Getting data from Firebase Database
@@ -21,18 +20,17 @@ function App() {
   }, [])
 
  
-
   return (
 
     <div className="App">
 
-      <div>
+      <div className="header_container">
         <Header username={username}/>
       </div>
 
       <div className="messages_container">
         <FlipMove>
-          {messages.map(({id, message}) => (
+          {messages.slice(-6).map(({id, message}) => (
             <Messages key={id} username={username} message={message}/>
           ))}
         </FlipMove>

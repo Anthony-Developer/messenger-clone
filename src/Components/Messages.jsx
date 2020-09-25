@@ -9,7 +9,7 @@ const Messages = forwardRef(({username, message}, ref) => {
         <div ref={ref} className={`messages_card ${currentUser && "message_user"}`}>
             <Card className={currentUser ? "message_user_card" : "message_guest_card"}>
                 <CardContent>
-                    <Typography color="initial" variant="h6">
+                    <Typography color="initial" >
                         {/* Shows other users name, not your own */}
                         {!currentUser && `${message.username || 'Unknown User'}:`} {message.message}
                     </Typography>
