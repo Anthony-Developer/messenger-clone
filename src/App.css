@@ -14,7 +14,8 @@
 
 .messages_container {
   margin: auto;
-  max-width: 800px;
+  width: 80vw;
+  overflow-y: scroll;
   flex: 0.6;
 }
 

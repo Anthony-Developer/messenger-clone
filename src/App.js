@@ -9,6 +9,7 @@ import db from './Firebase'
 function App() {
   const [messages, setMessages] = useState([])
   const [username, setUsername] = useState('')
+  const messagesComponent = React.createRef()
 
   useEffect(() => {
     setUsername(prompt('Please enter your Username'))
@@ -18,6 +19,11 @@ function App() {
       setMessages(snapshot.docs.map(doc => ({id: doc.id, message: doc.data()})))
     })
   }, [])
+
+  // Will automatically scroll to the bottom of the messages when a new message is inputed 
+  useEffect(() => {
+    messagesComponent.current.scrollIntoView(false)
+  }, [messages])
 
  
   return (
@@ -30,10 +36,11 @@ function App() {
 
       <div className="messages_container">
         <FlipMove>
-          {messages.slice(-6).map(({id, message}) => (
+          {messages.map(({id, message}) => (
             <Messages key={id} username={username} message={message}/>
           ))}
         </FlipMove>
+        <div ref={messagesComponent} />
       </div>
 
       <div className="input_container"> 
