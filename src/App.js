@@ -20,9 +20,9 @@ function App() {
     })
   }, [])
 
-  // Will automatically scroll to the bottom of the messages when a new message is inputed 
+  // Will automatically scroll to the bottom of the messages when a new message is inputed
   useEffect(() => {
-    messagesComponent.current.scrollIntoView(false)
+    messagesComponent.current.scrollIntoView({ block: 'end',  behavior: 'smooth' })
   }, [messages])
 
  
