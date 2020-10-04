@@ -1,3 +1,28 @@
 ## Facebook Messenger Clone
 
-Creating a messenger clone using React for the front-end and Firebase for the back-end. Material UI was used for styling and Recat Flip Move for the animation.
+A messenger clone, a simple chat application with a global chat room. Users will be prompted to enter their name and all associated messages from the user will be linked to the user.
+
+<br>
+
+### MVP Libraries
+
+|     Library      | Description                                |
+| :--------------: | :----------------------------------------- |
+|   React    | _The framework used to create all my components._ |
+|   Firebase   | _Used to handle the backend._ |
+|   Material UI   | _Used to help with styling._ |
+|   React Flip Move   | _Used to show animation when a new message is input._ |
+
+<br>
+
+### Component Breakdown
+
+|  Component   | State | Description                                                      |
+| :----------: | :---: | :--------------------------------------------------------------- |
+|    App       |   y   | _This will set a username and manage all messages being received from Database._ |
+|    Header    |   n   | _This will render the title along with logo and show current user._ |
+|    Messages  |   n   | _This will render all messages from database._ |
+|    Input     |   y   | _This will send your current message to the database._ |
+
+
+
