@@ -4,6 +4,11 @@ A messenger clone, a simple chat application with a global chat room. Users will
 
 <br>
 
+- Desktop Version
+
+![Desktop Demo](https://res.cloudinary.com/anthony-dev/image/upload/v1601834078/Screen_Shot_2020-10-04_at_1.52.55_PM_qd4wb2.png)
+
+
 ### MVP Libraries
 
 |     Library      | Description                                |
